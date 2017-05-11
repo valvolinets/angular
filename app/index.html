@@ -1,15 +1,46 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="phonecatApp">
 <head>
   <meta charset="utf-8">
   <title>My HTML File</title>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="css/app.css">
   <script src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="js/controllers.js"></script>
 </head>
-<body>
+<body ng-controller="PhoneListCtrl">
 
-  <p>Nothing here {{'yet' + '!'}}</p>
+  <input type="text" ng-model="search">
+  <ul>
+<li ng-repeat="phone in phones | filter:search">
+	<p>{{phone.name}}</p>
+	<p>{{phone.desc}}</p>
+  <p>Status : {{phone.status}}</p>
+</li>
+  </ul>
+<p>
+total number {{phones.length}}
+</p>
 
+
+<ul>
+  <li>Currency filter in use : {{555 | currency}}</li>
+  <li>Date filter in use : {{123123123 | date:'dd.MM.yyyy'}}</l>
+  <li>Lowercase filter in use : {{'My Fucking String' | lowercase}}</li>
+
+</ul>
+<hr>
+<table>
+  <thead>
+  <tr><th><a href="" ng-click="sort('name')">Name</a></th></tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="phone in phones | orderBy:sortField:reverse">
+      <td>{{phone.name}}</td>
+    </tr>
+
+  </tbody>
+
+</table>
 </body>
 </html>
